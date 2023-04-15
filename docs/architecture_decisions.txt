@@ -1,0 +1,17 @@
+Architecture Design Decisions
+------------------------------------------------------
+Three message passing techniques are used:
+- REST APIs
+- Message Queues (Kafka)
+- gRPC
+
+The frontend client uses REST API calls to backend services. It is straightforward to keep using REST API for the frontend client to backend services
+interaction. REST API is widely used in the industry because of its scalability and flexibility.
+
+gRPC was chosen as the mode of message passing for ingesting large volume of location data from the mobile devices. Mobile devices can integrate well with gRPC 
+without an intermediary proxy to the backend service. gRPC is using HTTP/2 as a transport which is a more secure and performant way of making HTTP requests 
+that is backwards compatible. gRPC uses protobufs to pass its messages. Protobufs are designed to be serialized into binary blobs, making it very efficient to 
+transport our data "over the wire" through a network.
+
+The location ingester service utilizes a message queue (Kafka) to handle the ingested location data. Message queues are a good fit when we are working with 
+real-time data processing.
