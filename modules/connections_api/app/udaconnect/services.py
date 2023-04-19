@@ -84,6 +84,6 @@ class ConnectionService:
     @staticmethod
     def get_data_from_pods(url: str) -> List[Dict]:
         """Get data from the provided url."""
-        headers = {{"Accept": "application/json"}}
+        headers = {"Accept": "application/json"}
         rsp = requests.get(url=url, headers=headers, verify=False, timeout=60)
         return rsp.json()
