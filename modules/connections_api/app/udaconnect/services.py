@@ -31,7 +31,7 @@ class ConnectionService:
 
         # Cache all users in memory for quick lookup
         person_map: Dict[str, Person] = {
-            person.id: person for person in ConnectionService.get_data_from_pods(url="http://persons_api/persons")}
+            person.id: person for person in PersonService.retrieve_all()}
 
         # Prepare arguments for queries
         data = []
@@ -81,9 +81,25 @@ class ConnectionService:
 
         return result
 
+
+class PersonService:
     @staticmethod
-    def get_data_from_pods(url: str) -> List[Dict]:
-        """Get data from the provided url."""
-        headers = {"Accept": "application/json"}
-        rsp = requests.get(url=url, headers=headers, verify=False, timeout=60)
-        return rsp.json()
+    def create(person: Dict) -> Person:
+        new_person = Person()
+        new_person.first_name = person["first_name"]
+        new_person.last_name = person["last_name"]
+        new_person.company_name = person["company_name"]
+
+        db.session.add(new_person)
+        db.session.commit()
+
+        return new_person
+
+    @staticmethod
+    def retrieve(person_id: int) -> Person:
+        person = db.session.query(Person).get(person_id)
+        return person
+
+    @staticmethod
+    def retrieve_all() -> List[Person]:
+        return db.session.query(Person).all()

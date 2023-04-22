@@ -31,7 +31,7 @@ spec:
         service: connections-api
     spec:
       containers:
-        - image: mbehadir/udaconnect-connections-api:latest
+        - image: mbehadir/nd064-connections-api:latest
           name: connections-api
           imagePullPolicy: Always
           env:

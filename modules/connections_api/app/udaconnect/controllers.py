@@ -2,7 +2,7 @@ import sys
 from datetime import datetime
 from app.udaconnect.schemas import ConnectionSchema
 from app.udaconnect.services import ConnectionService
-from flask import request, abort
+from flask import request, abort, Response
 from flask_accepts import accepts, responds
 from flask_restx import Namespace, Resource
 from typing import Optional, List
@@ -39,7 +39,7 @@ class ConnectionDataResource(Resource):
             if len(results) == 0:
                 abort(404)
             return results
-        except:
+        except Exception as err:
             print(sys.exc_info())
-            abort(422)
+            abort(Response(err), 422)
         return results

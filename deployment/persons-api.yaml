@@ -31,7 +31,7 @@ spec:
         service: persons-api
     spec:
       containers:
-        - image: mbehadir/udaconnect-persons-api:latest
+        - image: mbehadir/nd064-persons-api:latest
           name: persons-api
           imagePullPolicy: Always
           env:
