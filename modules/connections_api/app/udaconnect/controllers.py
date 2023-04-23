@@ -36,10 +36,7 @@ class ConnectionDataResource(Resource):
                 end_date=end_date,
                 meters=distance,
             )
-            if len(results) == 0:
-                abort(404)
             return results
         except Exception as err:
             print(sys.exc_info())
             abort(Response(err), 422)
-        return results

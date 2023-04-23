@@ -1,7 +1,7 @@
 from app.udaconnect.models import Person
 from app.udaconnect.schemas import PersonSchema
 from app.udaconnect.services import PersonService
-from flask import request, abort
+from flask import request, abort, Response
 from flask_accepts import accepts, responds
 from flask_restx import Namespace, Resource
 from typing import List
@@ -23,20 +23,18 @@ class PersonsResource(Resource):
             payload = request.get_json()
             new_person: Person = PersonService.create(payload)
             return new_person
-        except:
+        except Exception as err:
             print(sys.exc_info())
-            abort(422)
+            abort(Response(err), 422)
 
     @responds(schema=PersonSchema, many=True)
     def get(self) -> List[Person]:
         try:
             persons: List[Person] = PersonService.retrieve_all()
-            if len(persons) == 0:
-                abort(404)
             return persons
-        except:
+        except Exception as err:
             print(sys.exc_info())
-            abort(422)
+            abort(Response(err), 422)
 
 
 @api.route("/persons/<person_id>")
@@ -46,9 +44,7 @@ class PersonResource(Resource):
     def get(self, person_id) -> Person:
         try:
             person: Person = PersonService.retrieve(person_id)
-            if not person:
-                abort(404)
             return person
-        except:
+        except Exception as err:
             print(sys.exc_info())
-            abort(422)
+            abort(Response(err), 422)
