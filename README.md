@@ -81,11 +81,12 @@ Afterwards, you can test that `kubectl` works by running a command like `kubectl
 3. `kubectl apply -f deployment/postgres.yaml` - Set up a Postgres database running PostGIS
 4. `kubectl apply -f deployment/zookeeper.yaml` - Set up the service and deployment for Zookeeper
 5. `kubectl apply -f deployment/kafka.yaml` - Set up the service and deployment for the Kafka broker
-6. `kubectl apply -f deployment/persons-api.yaml` - Set up the service and deployment for the Persons-API
-7. `kubectl apply -f deployment/connections-api.yaml` - Set up the service and deployment for the Connections-API
-8. `kubectl apply -f deployment/udaconnect-app.yaml` - Set up the service and deployment for the web app
-9. `sh scripts/run_db_command.sh <POD_NAME>` - Seed your database against the `postgres` pod. (`kubectl get pods` will give you the `POD_NAME`)
-10. Create the kafka topics as follows
+6. `kubectl apply -f deployment/udaconnect-app.yaml` - Set up the service and deployment for the web app
+7. `kubectl apply -f deployment/persons-api.yaml` - Set up the service and deployment for the Persons-API
+8. `kubectl apply -f deployment/connections-api.yaml` - Set up the service and deployment for the Connections-API
+9. `kubectl apply -f deployment/locations-api.yaml` - Set up the service and deployment for the Locations-API
+10. `sh scripts/run_db_command.sh <POD_NAME>` - Seed your database against the `postgres` pod. (`kubectl get pods` will give you the `POD_NAME`)
+11. Create the kafka topics as follows
 ```
 master:~ # kubectl exec -ti kafka-deployment-7985656cd5-djl2n -- /bin/bash
 [appuser@kafka-deployment-7985656cd5-djl2n ~]$ kafka-topics --create --bootstrap-server localhost:29092 --replication-factor 1 --partitions 1 --topic persons-topic
@@ -163,5 +164,5 @@ Your architecture diagram should focus on the services and how they talk to one 
 * The starter project uses Python Flask. Flask doesn't work well with `asyncio` out-of-the-box. Consider using `multiprocessing` to create threads for asynchronous behavior in a standard Flask application.
 
 ## Personal Tips
-* Query postgres via kubectl ex. `kubectl exec -it postgres-59ff9bdfdc-fwfv9 -- psql -U ct_admin geoconnections -c "select * from public.location"`
-
+* Query postgres via kubectl ex. `kubectl exec -it postgres-59ff9bdfdc-78drf -- psql -U ct_admin geoconnections -c "select * from public.location"`
+* To create grpc python files `python -m grpc_tools.protoc -I./ --python_out=./ --grpc_python_out=./ location.proto`

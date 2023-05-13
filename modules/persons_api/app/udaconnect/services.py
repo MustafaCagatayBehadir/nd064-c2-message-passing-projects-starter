@@ -1,7 +1,9 @@
 import logging
+import json
 from typing import Dict, List
+from kafka import KafkaConsumer
 
-from app import db
+from app import db, g
 from app.udaconnect.models import Person
 
 logging.basicConfig(level=logging.WARNING)
@@ -9,6 +11,12 @@ logger = logging.getLogger("udaconnect-persons-api")
 
 
 class PersonService:
+    @staticmethod
+    def create_person(person: Dict) -> None:
+        kafka_producer = g.kafka_producer
+        kafka_producer.send("persons-topic", person)
+        kafka_producer.flush()
+
     @staticmethod
     def create(person: Dict) -> Person:
         new_person = Person()

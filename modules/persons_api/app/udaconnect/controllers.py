@@ -6,6 +6,7 @@ from flask_accepts import accepts, responds
 from flask_restx import Namespace, Resource
 from typing import List
 import sys
+import json
 
 DATE_FORMAT = "%Y-%m-%d"
 
@@ -21,8 +22,13 @@ class PersonsResource(Resource):
     def post(self) -> Person:
         try:
             payload = request.get_json()
-            new_person: Person = PersonService.create(payload)
-            return new_person
+            new_person: Person = PersonService.create_person(payload)
+            return Response(json.dumps({
+                "id": payload["id"],
+                "first_name": payload["first_name"],
+                "last_name": payload["last_name"],
+                "company_name": payload["company_name"]
+            }), 202)
         except Exception as err:
             print(sys.exc_info())
             abort(Response(err), 422)
