@@ -2,6 +2,10 @@ syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
 
+message Empty {
+    
+}
+
 message LocationMessage {
     int32 person_id = 1;
     double latitude = 2;
@@ -9,6 +13,11 @@ message LocationMessage {
     google.protobuf.Timestamp creation_time = 4;
 }
 
+message LocationMessageList {
+    repeated LocationMessage locations = 1;
+}
+
 service LocationService {
     rpc Create(LocationMessage) returns (LocationMessage);
+    rpc Get(Empty) returns (LocationMessageList);
 }

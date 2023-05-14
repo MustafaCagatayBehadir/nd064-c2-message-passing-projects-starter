@@ -1,0 +1,24 @@
+Your grpc message has to follow the below standart as you can see from location.proto file. The types are used are int32, double(A number or one of the strings "NaN", "Infinity" or "-Infinity"),
+google.protobuf.Timestamp {seconds, nanos}
+
+message LocationMessage {
+    int32 person_id = 1;
+    double latitude = 2;
+    double longitude = 3;
+    google.protobuf.Timestamp creation_time = 4;
+}
+
+Ex:
+
+{
+    "creation_time": {
+        "nanos": -32219919,
+        "seconds": "8135"
+    },
+    "latitude": -80551553.99706045,
+    "longitude": "NaN",
+    "person_id": 1232843281
+}
+
+For testing as a client I use Postman gRPC request. (https://learning.postman.com/docs/sending-requests/grpc/grpc-client-overview/)
+
