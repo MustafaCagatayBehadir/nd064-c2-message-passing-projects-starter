@@ -6,7 +6,7 @@ from kafka import KafkaConsumer
 TOPIC_NAME = 'locations-topic'
 KAFKA_SERVER = 'kafka-service:9092'
 
-def consume_persons_topic():
+def consume_locations_topic():
     from app.udaconnect import LocationService
     from app import create_app
     
@@ -28,4 +28,4 @@ def consume_persons_topic():
 
 if __name__ == '__main__':
     while True:
-        consume_persons_topic()
+        consume_locations_topic()

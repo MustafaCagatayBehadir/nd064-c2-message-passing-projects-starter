@@ -1,12 +1,11 @@
 import logging
-from datetime import datetime, timedelta
-from typing import Dict, List
+from typing import Dict
+from datetime import datetime 
 
 from app import db
 from app.udaconnect.models import Location
 from app.udaconnect.schemas import LocationSchema
-from geoalchemy2.functions import ST_AsText, ST_Point
-from sqlalchemy.sql import text
+from geoalchemy2.functions import ST_Point
 
 logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger("udaconnect-api")
@@ -35,9 +34,9 @@ class LocationService:
 
         new_location = Location()
         new_location.person_id = location["person_id"]
-        new_location.creation_time = location["creation_time"]
         new_location.coordinate = ST_Point(
             location["latitude"], location["longitude"])
+        new_location.creation_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         db.session.add(new_location)
         db.session.commit()
 

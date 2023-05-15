@@ -21,9 +21,8 @@ class LocationServicer(location_pb2_grpc.LocationServiceServicer):
         from app.udaconnect.services import LocationService
         location = {
             "person_id": request.person_id,
-            "latitude": request.latitude,
-            "longitude": request.longitude,
-            "creation_time": request.creation_time,
+            "latitude":  request.latitude,
+            "longitude": request.longitude
         }
         print(location)
         producer = self.kafka_producer()

@@ -11,22 +11,21 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0elocation.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\x07\n\x05\x45mpty\"|\n\x0fLocationMessage\x12\x11\n\tperson_id\x18\x01 \x01(\x05\x12\x10\n\x08latitude\x18\x02 \x01(\x01\x12\x11\n\tlongitude\x18\x03 \x01(\x01\x12\x31\n\rcreation_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\":\n\x13LocationMessageList\x12#\n\tlocations\x18\x01 \x03(\x0b\x32\x10.LocationMessage2d\n\x0fLocationService\x12,\n\x06\x43reate\x12\x10.LocationMessage\x1a\x10.LocationMessage\x12#\n\x03Get\x12\x06.Empty\x1a\x14.LocationMessageListb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0elocation.proto\"\x07\n\x05\x45mpty\"I\n\x0fLocationMessage\x12\x11\n\tperson_id\x18\x01 \x01(\x05\x12\x10\n\x08latitude\x18\x02 \x01(\x01\x12\x11\n\tlongitude\x18\x03 \x01(\x01\":\n\x13LocationMessageList\x12#\n\tlocations\x18\x01 \x03(\x0b\x32\x10.LocationMessage2d\n\x0fLocationService\x12,\n\x06\x43reate\x12\x10.LocationMessage\x1a\x10.LocationMessage\x12#\n\x03Get\x12\x06.Empty\x1a\x14.LocationMessageListb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'location_pb2', globals())
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  _EMPTY._serialized_start=51
-  _EMPTY._serialized_end=58
-  _LOCATIONMESSAGE._serialized_start=60
-  _LOCATIONMESSAGE._serialized_end=184
-  _LOCATIONMESSAGELIST._serialized_start=186
-  _LOCATIONMESSAGELIST._serialized_end=244
-  _LOCATIONSERVICE._serialized_start=246
-  _LOCATIONSERVICE._serialized_end=346
+  _EMPTY._serialized_start=18
+  _EMPTY._serialized_end=25
+  _LOCATIONMESSAGE._serialized_start=27
+  _LOCATIONMESSAGE._serialized_end=100
+  _LOCATIONMESSAGELIST._serialized_start=102
+  _LOCATIONMESSAGELIST._serialized_end=160
+  _LOCATIONSERVICE._serialized_start=162
+  _LOCATIONSERVICE._serialized_end=262
 # @@protoc_insertion_point(module_scope)
