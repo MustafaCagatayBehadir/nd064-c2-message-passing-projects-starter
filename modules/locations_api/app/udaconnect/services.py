@@ -36,7 +36,6 @@ class LocationService:
         new_location.person_id = location["person_id"]
         new_location.coordinate = ST_Point(
             location["latitude"], location["longitude"])
-        new_location.creation_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         db.session.add(new_location)
         db.session.commit()
 

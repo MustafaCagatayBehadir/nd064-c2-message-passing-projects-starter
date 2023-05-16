@@ -14,9 +14,6 @@ KAFKA_SERVER = 'kafka-service:9092'
 
 
 class LocationServicer(location_pb2_grpc.LocationServiceServicer):
-    def Get(self, request, context):
-        return
-
     def Create(self, request, context):
         from app.udaconnect.services import LocationService
         location = {

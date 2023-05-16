@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "39c283a4-4737-4163-94db-42df54f99502",
+		"name": "Udaconnect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9200702"
+	},
+	"item": [
+		{
+			"name": "Create Person",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"first_name\": \"Mustafa\",\r\n    \"last_name\": \"Behadir\",\r\n    \"company_name\": \"SES\"\r\n}"
+				},
+				"url": {
+					"raw": "127.0.0.1:30001/persons",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "30001",
+					"path": [
+						"persons"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

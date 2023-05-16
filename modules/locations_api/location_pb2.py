@@ -13,19 +13,17 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0elocation.proto\"\x07\n\x05\x45mpty\"I\n\x0fLocationMessage\x12\x11\n\tperson_id\x18\x01 \x01(\x05\x12\x10\n\x08latitude\x18\x02 \x01(\x01\x12\x11\n\tlongitude\x18\x03 \x01(\x01\":\n\x13LocationMessageList\x12#\n\tlocations\x18\x01 \x03(\x0b\x32\x10.LocationMessage2d\n\x0fLocationService\x12,\n\x06\x43reate\x12\x10.LocationMessage\x1a\x10.LocationMessage\x12#\n\x03Get\x12\x06.Empty\x1a\x14.LocationMessageListb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0elocation.proto\"I\n\x0fLocationMessage\x12\x11\n\tperson_id\x18\x01 \x01(\x05\x12\x10\n\x08latitude\x18\x02 \x01(\t\x12\x11\n\tlongitude\x18\x03 \x01(\t\":\n\x13LocationMessageList\x12#\n\tlocations\x18\x01 \x03(\x0b\x32\x10.LocationMessage2?\n\x0fLocationService\x12,\n\x06\x43reate\x12\x10.LocationMessage\x1a\x10.LocationMessageb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'location_pb2', globals())
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  _EMPTY._serialized_start=18
-  _EMPTY._serialized_end=25
-  _LOCATIONMESSAGE._serialized_start=27
-  _LOCATIONMESSAGE._serialized_end=100
-  _LOCATIONMESSAGELIST._serialized_start=102
-  _LOCATIONMESSAGELIST._serialized_end=160
-  _LOCATIONSERVICE._serialized_start=162
-  _LOCATIONSERVICE._serialized_end=262
+  _LOCATIONMESSAGE._serialized_start=18
+  _LOCATIONMESSAGE._serialized_end=91
+  _LOCATIONMESSAGELIST._serialized_start=93
+  _LOCATIONMESSAGELIST._serialized_end=151
+  _LOCATIONSERVICE._serialized_start=153
+  _LOCATIONSERVICE._serialized_end=216
 # @@protoc_insertion_point(module_scope)

@@ -88,7 +88,7 @@ Afterwards, you can test that `kubectl` works by running a command like `kubectl
 10. `sh scripts/run_db_command.sh <POD_NAME>` - Seed your database against the `postgres` pod. (`kubectl get pods` will give you the `POD_NAME`)
 11. Create the kafka topics as follows
 ```
-master:~ # kubectl exec -ti kafka-deployment-7985656cd5-djl2n -- /bin/bash
+master:~ # kubectl exec -ti <POD_NAME> -- /bin/bash
 [appuser@kafka-deployment-7985656cd5-djl2n ~]$ kafka-topics --create --bootstrap-server localhost:29092 --replication-factor 1 --partitions 1 --topic persons-topic
 Created topic persons-topic.
 [appuser@kafka-deployment-7985656cd5-djl2n ~]$ kafka-topics --create --bootstrap-server localhost:29092 --replication-factor 1 --partitions 1 --topic locations-topic
