@@ -1,0 +1,84 @@
+---
+swagger: "2.0"
+info:
+  version: 0.1.0
+  title: UdaConnect Connections API
+basePath: /
+tags:
+- name: UdaConnect
+  description: Connections api.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /api/persons/{person_id}/connection:
+    get:
+      tags:
+      - UdaConnect
+      operationId: get_connection_data_resource
+      parameters:
+      - name: distance
+        in: query
+        description: Proximity to a given user in meters
+        required: false
+        type: string
+      - name: end_date
+        in: query
+        description: Upper bound of date range
+        required: false
+        type: string
+      - name: start_date
+        in: query
+        description: Lower bound of date range
+        required: false
+        type: string
+      - name: person_id
+        in: path
+        required: true
+        type: string
+      - name: X-Fields
+        in: header
+        description: An optional fields mask
+        required: false
+        type: string
+        format: mask
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Connection'
+definitions:
+  Person:
+    type: object
+    properties:
+      id:
+        type: integer
+      first_name:
+        type: string
+      last_name:
+        type: string
+      company_name:
+        type: string
+  Location:
+    properties:
+      id:
+        type: integer
+      person_id:
+        type: integer
+      longitude:
+        type: string
+      latitude:
+        type: string
+  Connection:
+    type: object
+    properties:
+      location:
+        $ref: '#/definitions/Location'
+      person:
+        $ref: '#/definitions/Person'
+responses:
+  ParseError:
+    description: When a mask can't be parsed
+  MaskError:
+    description: When any error occurs on mask

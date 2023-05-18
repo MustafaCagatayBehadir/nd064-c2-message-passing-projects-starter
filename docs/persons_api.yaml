@@ -1,0 +1,86 @@
+---
+swagger: "2.0"
+info:
+  version: 0.1.0
+  title: UdaConnect Persons API
+basePath: /
+tags:
+- name: UdaConnect
+  description: Persons api.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /api/persons:
+    get:
+      tags:
+      - UdaConnect
+      operationId: get_persons_resource
+      parameters:
+      - name: X-Fields
+        in: header
+        description: An optional fields mask
+        required: false
+        type: string
+        format: mask
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Person'
+    post:
+      tags:
+      - UdaConnect
+      operationId: post_persons_resource
+      parameters:
+      - name: X-Fields
+        in: header
+        description: An optional fields mask
+        required: false
+        type: string
+        format: mask
+      responses:
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/Person'
+  /api/persons/{person_id}:
+    get:
+      tags:
+      - UdaConnect
+      operationId: get_person_resource
+      parameters:
+      - name: person_id
+        in: path
+        description: Unique ID for a given Person
+        required: true
+        type: string
+      - name: X-Fields
+        in: header
+        description: An optional fields mask
+        required: false
+        type: string
+        format: mask
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Person'
+definitions:
+  Person:
+    type: object
+    properties:
+      id:
+        type: integer
+      first_name:
+        type: string
+      last_name:
+        type: string
+      company_name:
+        type: string
+responses:
+  ParseError:
+    description: When a mask can't be parsed
+  MaskError:
+    description: When any error occurs on mask

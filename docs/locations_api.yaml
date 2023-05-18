@@ -1,0 +1,53 @@
+---
+swagger: "2.0"
+info:
+  version: 0.1.0
+  title: UdaConnect API
+basePath: /
+tags:
+- name: UdaConnect
+  description: Geolocation.
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /api/locations/{location_id}:
+    get:
+      tags:
+      - UdaConnect
+      operationId: get_location_resource
+      parameters:
+      - name: location_id
+        in: path
+        description: Unique ID for a given Location
+        required: true
+        type: string
+      - name: X-Fields
+        in: header
+        description: An optional fields mask
+        required: false
+        type: string
+        format: mask
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/Location'
+definitions:
+  Location:
+    type: object
+    properties:
+      id:
+        type: integer
+      person_id:
+        type: integer
+      longitude:
+        type: string
+      latitude:
+        type: string
+responses:
+  ParseError:
+    description: When a mask can't be parsed
+  MaskError:
+    description: When any error occurs on mask

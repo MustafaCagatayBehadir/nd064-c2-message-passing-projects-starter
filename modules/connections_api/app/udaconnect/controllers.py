@@ -20,7 +20,7 @@ api = Namespace("UdaConnect", description="Connections api.")  # noqa
 @api.param("end_date", "Upper bound of date range", _in="query")
 @api.param("distance", "Proximity to a given user in meters", _in="query")
 class ConnectionDataResource(Resource):
-    @responds(schema=ConnectionSchema, many=True)
+    @responds(schema=ConnectionSchema, many=True, api=api)
     def get(self, person_id) -> ConnectionSchema:
         try:
             start_date: datetime = datetime.strptime(

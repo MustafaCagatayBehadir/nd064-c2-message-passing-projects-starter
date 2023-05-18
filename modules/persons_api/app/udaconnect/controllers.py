@@ -18,7 +18,7 @@ api = Namespace("UdaConnect", description="Persons api.")  # noqa
 @api.route("/persons")
 class PersonsResource(Resource):
     @accepts(schema=PersonSchema)
-    @responds(schema=PersonSchema)
+    @responds(schema=PersonSchema, status_code=202, description="Accepted", api=api)
     def post(self) -> Person:
         try:
             payload = request.get_json()
@@ -33,24 +33,24 @@ class PersonsResource(Resource):
             print(sys.exc_info())
             abort(Response(err), 422)
 
-    @responds(schema=PersonSchema, many=True)
+    @responds(schema=PersonSchema, many=True, api=api)
     def get(self) -> List[Person]:
         try:
             persons: List[Person] = PersonService.retrieve_all()
             return persons
         except Exception as err:
             print(sys.exc_info())
-            abort(Response(err), 422)
+            abort(Response(err), 501)
 
 
 @api.route("/persons/<person_id>")
 @api.param("person_id", "Unique ID for a given Person", _in="query")
 class PersonResource(Resource):
-    @responds(schema=PersonSchema)
+    @responds(schema=PersonSchema, api=api)
     def get(self, person_id) -> Person:
         try:
             person: Person = PersonService.retrieve(person_id)
             return person
         except Exception as err:
             print(sys.exc_info())
-            abort(Response(err), 422)
+            abort(Response(err), 501)
